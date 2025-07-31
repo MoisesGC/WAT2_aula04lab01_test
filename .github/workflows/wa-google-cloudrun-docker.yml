@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         id : lint-deps
         run: npm install
@@ -47,7 +47,7 @@ jobs:
     steps:
       # Git checkout
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       # Login to GCP
       - name: LoginCCP
