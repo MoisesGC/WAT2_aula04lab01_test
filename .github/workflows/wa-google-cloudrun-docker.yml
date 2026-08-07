@@ -1,6 +1,5 @@
-name: GCP Deploy
-on:
-  push
+name: GCP Deploy T7
+on: push
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -8,10 +7,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install dependencies
-        id : lint-deps
+        id: lint-deps
         run: npm install
       - name: Lint
-        id : lint-step
+        id: lint-step
         continue-on-error: true
         run: npm run lint
       - name: check-lint
@@ -68,6 +67,6 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME
 
-      # deploy image 
+      # deploy image
       - name: Deploy Docker image
         run: gcloud run deploy wacicd --image $IMAGE_NAME --region us-west1 --memory 128Mi --min-instances 0 --max-instances 1 --platform managed --port 8080 --allow-unauthenticated
